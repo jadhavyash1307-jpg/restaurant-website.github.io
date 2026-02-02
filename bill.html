@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Invoice - Food Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-----------------------------HEADER----------------------------->
+
+    <nav>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png"></a>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#About">About</a></li>
+            <li><a href="index.html#Menu">Menu</a></li>
+            <li><a href="index.html#Team">Team</a></li>
+            <li><a href="index.html#Order">Order</a></li>
+        </ul>
+        <div class="icon">
+            <a href="search.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="favourites.html"><i class="fa-solid fa-heart"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </nav>
+
+    <!-----------------------------INVOICE SECTION----------------------------->
+
+    <div class="invoice_container">
+        <div class="invoice_header">
+            <h1>Order<span>Invoice</span></h1>
+            <p>Your order has been confirmed!</p>
+        </div>
+
+        <div class="invoice_wrapper">
+            <div class="invoice_card">
+                <!-- Invoice Success Message -->
+                <div class="invoice_success">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h2>Order Confirmed!</h2>
+                    <p>Thank you for your order. You will receive your food soon.</p>
+                </div>
+
+                <!-- Invoice Details -->
+                <div class="invoice_content">
+                    <!-- Order Number and Date -->
+                    <div class="invoice_top">
+                        <div class="invoice_info">
+                            <div class="info_box">
+                                <label>Order Number</label>
+                                <p id="invoiceOrderNumber">#ORD-00001</p>
+                            </div>
+                            <div class="info_box">
+                                <label>Order Date</label>
+                                <p id="invoiceOrderDate">--/--/----</p>
+                            </div>
+                            <div class="info_box">
+                                <label>Estimated Delivery</label>
+                                <p id="invoiceDeliveryTime">30-45 minutes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer and Delivery Details -->
+                    <div class="invoice_details_section">
+                        <div class="detail_column">
+                            <h3>Customer Information</h3>
+                            <p><strong>Name:</strong> <span id="invoiceCustomerName">--</span></p>
+                            <p><strong>Email:</strong> <span id="invoiceCustomerEmail">--</span></p>
+                            <p><strong>Phone:</strong> <span id="invoiceCustomerPhone">--</span></p>
+                        </div>
+                        <div class="detail_column">
+                            <h3>Delivery Address</h3>
+                            <p><strong>Address:</strong> <span id="invoiceDeliveryAddress">--</span></p>
+                            <p><strong>City:</strong> <span id="invoiceDeliveryCity">--</span></p>
+                            <p><strong>Zip Code:</strong> <span id="invoiceDeliveryZip">--</span></p>
+                        </div>
+                        <div class="detail_column">
+                            <h3>Payment Information</h3>
+                            <p><strong>Method:</strong> <span id="invoicePaymentMethod">--</span></p>
+                            <p><strong>Status:</strong> <span class="payment_status pending">Pending</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Items Ordered -->
+                    <div class="invoice_items">
+                        <h3>Items Ordered</h3>
+                        <div class="items_table">
+                            <div class="table_header">
+                                <div class="col_item">Item</div>
+                                <div class="col_qty">Qty</div>
+                                <div class="col_price">Price</div>
+                                <div class="col_total">Total</div>
+                            </div>
+                            <div id="invoiceItems" class="table_body">
+                                <!-- Items will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Totals -->
+                    <div class="invoice_totals">
+                        <div class="totals_row">
+                            <span>Subtotal</span>
+                            <span id="invoiceSubtotal">₹0.00</span>
+                        </div>
+                        <div class="totals_row">
+                            <span>Delivery Fee</span>
+                            <span id="invoiceDeliveryFee">₹50.00</span>
+                        </div>
+                        <div class="totals_row">
+                            <span>Tax (10%)</span>
+                            <span id="invoiceTax">₹0.00</span>
+                        </div>
+                        <div class="totals_divider"></div>
+                        <div class="totals_row total_amount">
+                            <span>Total Amount</span>
+                            <span id="invoiceTotalAmount">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Special Instructions -->
+                    <div id="invoiceNotesSection" class="invoice_notes" style="display: none;">
+                        <h3>Special Instructions</h3>
+                        <p id="invoiceNotes">--</p>
+                    </div>
+
+                    <!-- Invoice Actions -->
+                    <div class="invoice_actions">
+                        <button class="action_btn print_btn" onclick="printInvoice()">
+                            <i class="fa-solid fa-print"></i> Print Invoice
+                        </button>
+                        <button class="action_btn download_btn" onclick="downloadInvoice()">
+                            <i class="fa-solid fa-download"></i> Download PDF
+                        </button>
+                        <button class="action_btn home_btn" onclick="window.location.href='index.html'">
+                            <i class="fa-solid fa-home"></i> Back to Home
+                        </button>
+                    </div>
+
+                    <!-- Track Order Section -->
+                    <div class="track_order_section">
+                        <h3>Track Your Order</h3>
+                        <div class="order_status">
+                            <div class="status_step completed">
+                                <i class="fa-solid fa-check-circle"></i>
+                                <span>Order Confirmed</span>
+                            </div>
+                            <div class="status_divider"></div>
+                            <div class="status_step">
+                                <i class="fa-solid fa-utensils"></i>
+                                <span>Being Prepared</span>
+                            </div>
+                            <div class="status_divider"></div>
+                            <div class="status_step">
+                                <i class="fa-solid fa-truck"></i>
+                                <span>On the Way</span>
+                            </div>
+                            <div class="status_divider"></div>
+                            <div class="status_step">
+                                <i class="fa-solid fa-hand-holding-box"></i>
+                                <span>Delivered</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-----------------------------FOOTER------------------------------>
+
+    <footer>
+        <div class="footer_main">
+
+            <div class="footer_tag">
+                <h2>Location</h2>
+                <p>Mumbai</p>
+                <p>Pune</p>
+                <p>Palghar</p>
+                <p>Thane</p>
+                <p>Nagpur</p>
+            </div>
+
+            <div class="footer_link">
+                <h2>Quick Link</h2>
+                <div class="quick_link">
+                    <a href="index.html">
+                        <p>Home</p>
+                    </a>
+                    <a href="index.html#About">
+                        <p>About</p>
+                    </a>
+                    <a href="index.html#Menu">
+                        <p>Menu</p>
+                    </a>
+                    <a href="index.html#Team">
+                        <p>Team</p>
+                    </a>
+                    <a href="index.html#Order">
+                        <p>Order</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Contact</h2>
+                <p>+91 83290 26125</p>
+                <p>jadhavyash1307@gmail.com</p>
+                <p>foodshop123@gmail.com</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Our Services</h2>
+                <p>Fast Delivery</p>
+                <p>Easy Payments</p>
+                <p>24 × 7 Service</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Follows</h2>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Menu items data
+        const menuItems = {
+            1: { name: 'Burger', price: 80, originalPrice: 85, image: 'burger.png' },
+            2: { name: 'Pasta', price: 70, originalPrice: 80, image: 'pasta.png' },
+            3: { name: 'Pizza', price: 100, originalPrice: 120, image: 'pizza.png' },
+            4: { name: 'Sandwich', price: 40, originalPrice: 50, image: 'sandwich.png' },
+            5: { name: 'Biryani', price: 200, originalPrice: 220, image: 'biryani.png' },
+            6: { name: 'Chocolate drink', price: 50, originalPrice: 55, image: 'chocolate drink.png' },
+            7: { name: 'Juice', price: 25, originalPrice: 30, image: 'juice.png' },
+            8: { name: 'Ice Cream', price: 60, originalPrice: 70, image: 'ice cream.png' }
+        };
+
+        // Get the latest order from localStorage
+        function getLatestOrder() {
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            return orders.length > 0 ? orders[orders.length - 1] : null;
+        }
+
+        // Generate order number
+        function generateOrderNumber(index) {
+            return '#ORD-' + String(index + 1).padStart(5, '0');
+        }
+
+        // Display invoice
+        function displayInvoice() {
+            const order = getLatestOrder();
+            if (!order) {
+                document.querySelector('.invoice_wrapper').innerHTML = `
+                    <div class="invoice_card">
+                        <div class="empty_invoice">
+                            <i class="fa-solid fa-exclamation-circle"></i>
+                            <h2>No Order Found</h2>
+                            <p>There's no recent order to display.</p>
+                            <a href="index.html" class="empty_invoice_btn">Go to Home</a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const orderIndex = orders.length - 1;
+            const orderNumber = generateOrderNumber(orderIndex);
+
+            // Set order details
+            document.getElementById('invoiceOrderNumber').textContent = orderNumber;
+            document.getElementById('invoiceOrderDate').textContent = order.orderDate || new Date().toLocaleString();
+            document.getElementById('invoiceCustomerName').textContent = order.fullName;
+            document.getElementById('invoiceCustomerEmail').textContent = order.email;
+            document.getElementById('invoiceCustomerPhone').textContent = order.phone;
+            document.getElementById('invoiceDeliveryAddress').textContent = order.address;
+            document.getElementById('invoiceDeliveryCity').textContent = order.city;
+            document.getElementById('invoiceDeliveryZip').textContent = order.zipcode;
+            document.getElementById('invoicePaymentMethod').textContent = capitalizeFirst(order.paymentMethod);
+
+            // Set special instructions if available
+            if (order.notes) {
+                document.getElementById('invoiceNotesSection').style.display = 'block';
+                document.getElementById('invoiceNotes').textContent = order.notes;
+            }
+
+            // Populate items
+            let itemsHtml = '';
+            let subtotal = 0;
+
+            order.items.forEach(cartItem => {
+                const product = menuItems[cartItem.id];
+                if (product) {
+                    const itemTotal = product.price * cartItem.quantity;
+                    subtotal += itemTotal;
+                    itemsHtml += `
+                        <div class="table_row">
+                            <div class="col_item">${product.name}</div>
+                            <div class="col_qty">${cartItem.quantity}</div>
+                            <div class="col_price">₹${product.price}.00</div>
+                            <div class="col_total">₹${itemTotal}.00</div>
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('invoiceItems').innerHTML = itemsHtml;
+
+            // Calculate and display totals
+            const deliveryFee = 50;
+            const tax = Math.round((subtotal * 10) / 100);
+            const total = subtotal + deliveryFee + tax;
+
+            document.getElementById('invoiceSubtotal').textContent = `₹${subtotal}.00`;
+            document.getElementById('invoiceDeliveryFee').textContent = `₹${deliveryFee}.00`;
+            document.getElementById('invoiceTax').textContent = `₹${tax}.00`;
+            document.getElementById('invoiceTotalAmount').textContent = `₹${total}.00`;
+        }
+
+        // Capitalize first letter
+        function capitalizeFirst(str) {
+            if (!str) return '';
+            return str.charAt(0).toUpperCase() + str.slice(1).replace('cod', 'Cash on Delivery').replace('card', 'Credit/Debit Card').replace('upi', 'UPI').replace('wallet', 'Digital Wallet');
+        }
+
+        // Print invoice
+        function printInvoice() {
+            window.print();
+        }
+
+        // Download invoice as PDF (basic implementation)
+        function downloadInvoice() {
+            const order = getLatestOrder();
+            if (!order) {
+                alert('No order found to download');
+                return;
+            }
+
+            let content = 'FOOD ORDER INVOICE\n\n';
+            content += '===================================\n';
+            content += 'Customer: ' + order.fullName + '\n';
+            content += 'Phone: ' + order.phone + '\n';
+            content += 'Email: ' + order.email + '\n';
+            content += 'Date: ' + order.orderDate + '\n';
+            content += '===================================\n\n';
+
+            content += 'DELIVERY ADDRESS\n';
+            content += order.address + '\n';
+            content += order.city + ', ' + order.zipcode + '\n\n';
+
+            content += 'ITEMS ORDERED\n';
+            let subtotal = 0;
+            order.items.forEach(cartItem => {
+                const product = menuItems[cartItem.id];
+                if (product) {
+                    const itemTotal = product.price * cartItem.quantity;
+                    subtotal += itemTotal;
+                    content += product.name + ' x' + cartItem.quantity + ' = ₹' + itemTotal + '.00\n';
+                }
+            });
+
+            const deliveryFee = 50;
+            const tax = Math.round((subtotal * 10) / 100);
+            const total = subtotal + deliveryFee + tax;
+
+            content += '\n===================================\n';
+            content += 'Subtotal: ₹' + subtotal + '.00\n';
+            content += 'Delivery Fee: ₹' + deliveryFee + '.00\n';
+            content += 'Tax (10%): ₹' + tax + '.00\n';
+            content += 'TOTAL: ₹' + total + '.00\n';
+            content += '===================================\n';
+            content += 'Payment Method: ' + order.paymentMethod + '\n';
+
+            // Create and download
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', 'order_invoice.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            displayInvoice();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Food Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-----------------------------HEADER----------------------------->
+
+    <nav>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png"></a>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#About">About</a></li>
+            <li><a href="index.html#Menu">Menu</a></li>
+            <li><a href="index.html#Team">Team</a></li>
+            <li><a href="index.html#Order">Order</a></li>
+        </ul>
+        <div class="icon">
+            <a href="search.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="favourites.html"><i class="fa-solid fa-heart"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </nav>
+
+    <!-----------------------------CART SECTION----------------------------->
+
+    <div class="cart_container">
+        <div class="cart_header">
+            <h1>Shopping<span>Cart</span></h1>
+            <p>Review and manage your order</p>
+        </div>
+
+        <div class="cart_main">
+            <!-- Cart Items Section -->
+            <div class="cart_items_section">
+                <div id="cartItemsContainer">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Cart Summary Section -->
+            <div class="cart_summary">
+                <div class="summary_header">
+                    <h2>Order Summary</h2>
+                </div>
+
+                <div class="summary_details">
+                    <div class="summary_row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0.00</span>
+                    </div>
+                    <div class="summary_row">
+                        <span>Delivery Fee</span>
+                        <span id="deliveryFee">₹0.00</span>
+                    </div>
+                    <div class="summary_row">
+                        <span>Tax (10%)</span>
+                        <span id="tax">₹0.00</span>
+                    </div>
+                    <div class="summary_divider"></div>
+                    <div class="summary_row total">
+                        <span>Total Amount</span>
+                        <span id="totalAmount">₹0.00</span>
+                    </div>
+                </div>
+
+                <button class="checkout_btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                <a href="index.html" class="continue_shopping">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <!-----------------------------FOOTER------------------------------>
+
+    <footer>
+        <div class="footer_main">
+
+            <div class="footer_tag">
+                <h2>Location</h2>
+                <p>Mumbai</p>
+                <p>Pune</p>
+                <p>Palghar</p>
+                <p>Thane</p>
+                <p>Nagpur</p>
+            </div>
+
+            <div class="footer_link">
+                <h2>Quick Link</h2>
+                <div class="quick_link">
+                    <a href="index.html">
+                        <p>Home</p>
+                    </a>
+                    <a href="index.html#About">
+                        <p>About</p>
+                    </a>
+                    <a href="index.html#Menu">
+                        <p>Menu</p>
+                    </a>
+                    <a href="index.html#Team">
+                        <p>Team</p>
+                    </a>
+                    <a href="index.html#Order">
+                        <p>Order</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Contact</h2>
+                <p>+91 83290 26125</p>
+                <p>jadhavyash1307@gmail.com</p>
+                <p>foodshop123@gmail.com</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Our Services</h2>
+                <p>Fast Delivery</p>
+                <p>Easy Payments</p>
+                <p>24 × 7 Service</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Follows</h2>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Menu items data
+        const menuItems = {
+            1: { name: 'Burger', price: 80, originalPrice: 85, image: 'burger.png' },
+            2: { name: 'Pasta', price: 70, originalPrice: 80, image: 'pasta.png' },
+            3: { name: 'Pizza', price: 100, originalPrice: 120, image: 'pizza.png' },
+            4: { name: 'Sandwich', price: 40, originalPrice: 50, image: 'sandwich.png' },
+            5: { name: 'Biryani', price: 200, originalPrice: 220, image: 'biryani.png' },
+            6: { name: 'Chocolate drink', price: 50, originalPrice: 55, image: 'chocolate drink.png' },
+            7: { name: 'Juice', price: 25, originalPrice: 30, image: 'juice.png' },
+            8: { name: 'Ice Cream', price: 60, originalPrice: 70, image: 'ice cream.png' }
+        };
+
+        // Get cart from localStorage
+        function getCart() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        // Save cart to localStorage
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Add item to cart
+        function addToCart(itemId, quantity = 1) {
+            let cart = getCart();
+            const existingItem = cart.find(item => item.id === itemId);
+
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: itemId,
+                    quantity: quantity
+                });
+            }
+
+            saveCart(cart);
+            showNotification('Added to cart!', 'success');
+            renderCart();
+        }
+
+        // Remove item from cart
+        function removeFromCart(itemId) {
+            let cart = getCart();
+            cart = cart.filter(item => item.id !== itemId);
+            saveCart(cart);
+            showNotification('Item removed from cart', 'remove');
+            renderCart();
+        }
+
+        // Update item quantity
+        function updateQuantity(itemId, quantity) {
+            let cart = getCart();
+            const item = cart.find(item => item.id === itemId);
+            quantity = parseInt(quantity);
+
+            if (item) {
+                if (quantity <= 0) {
+                    removeFromCart(itemId);
+                } else {
+                    item.quantity = quantity;
+                    saveCart(cart);
+                    renderCart();
+                }
+            }
+        }
+
+        // Render cart items
+        function renderCart() {
+            const cart = getCart();
+            const container = document.getElementById('cartItemsContainer');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="empty_cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Add some delicious items to your cart</p>
+                        <a href="index.html" class="empty_cart_btn">Start Shopping</a>
+                    </div>
+                `;
+                document.querySelector('.cart_summary').style.display = 'none';
+                return;
+            }
+
+            document.querySelector('.cart_summary').style.display = 'block';
+
+            let html = '<div class="cart_items">';
+            cart.forEach(cartItem => {
+                const product = menuItems[cartItem.id];
+                if (product) {
+                    const itemTotal = product.price * cartItem.quantity;
+                    html += `
+                        <div class="cart_item" data-id="${cartItem.id}">
+                            <div class="cart_item_image">
+                                <img src="${product.image}" alt="${product.name}">
+                            </div>
+                            <div class="cart_item_details">
+                                <h3>${product.name}</h3>
+                                <p class="item_price">₹${product.price}.00</p>
+                                <p class="item_description">Original Price: <strike>₹${product.originalPrice}.00</strike></p>
+                            </div>
+                            <div class="cart_item_controls">
+                                <button class="qty_btn" onclick="updateQuantity(${cartItem.id}, ${cartItem.quantity - 1})">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <input type="number" class="qty_input" value="${cartItem.quantity}" onchange="updateQuantity(${cartItem.id}, this.value)">
+                                <button class="qty_btn" onclick="updateQuantity(${cartItem.id}, ${cartItem.quantity + 1})">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="cart_item_total">
+                                <p>₹${itemTotal}.00</p>
+                            </div>
+                            <button class="remove_btn" onclick="removeFromCart(${cartItem.id})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+            });
+            html += '</div>';
+            container.innerHTML = html;
+
+            updateSummary();
+        }
+
+        // Update cart summary
+        function updateSummary() {
+            const cart = getCart();
+            let subtotal = 0;
+
+            cart.forEach(cartItem => {
+                const product = menuItems[cartItem.id];
+                if (product) {
+                    subtotal += product.price * cartItem.quantity;
+                }
+            });
+
+            const deliveryFee = subtotal > 0 ? 50 : 0;
+            const tax = Math.round((subtotal * 10) / 100);
+            const total = subtotal + deliveryFee + tax;
+
+            document.getElementById('subtotal').textContent = `₹${subtotal}.00`;
+            document.getElementById('deliveryFee').textContent = `₹${deliveryFee}.00`;
+            document.getElementById('tax').textContent = `₹${tax}.00`;
+            document.getElementById('totalAmount').textContent = `₹${total}.00`;
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#fac031' : '#ff6b6b'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                z-index: 10000;
+                animation: slideInNotif 0.3s ease-out;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutNotif 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        // Proceed to checkout
+        function proceedToCheckout() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                showNotification('Cart is empty!', 'remove');
+                return;
+            }
+            window.location.href = 'order.html';
+        }
+
+        // Initialize cart on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            renderCart();
+        });
+
+        // Add animation styles to document
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInNotif {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            @keyframes slideOutNotif {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+
+</html>

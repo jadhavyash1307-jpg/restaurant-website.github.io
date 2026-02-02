@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourites - Food Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-----------------------------HEADER----------------------------->
+
+    <nav>
+        <div class="logo">
+            <img src="logo.png">
+        </div>
+        <ul>
+            <li><a href="index.html#Home">Home</a></li>
+            <li><a href="index.html#About">About</a></li>
+            <li><a href="index.html#Menu">Menu</a></li>
+            <li><a href="index.html#Team">Team</a></li>
+            <li><a href="index.html#Order">Order</a></li>
+        </ul>
+        <div class="icon">
+            <a href="search.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="favourites.html"><i class="fa-solid fa-heart"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </nav>
+
+    <!-----------------------------FAVOURITES SECTION----------------------------->
+
+    <div class="favourites_container">
+        <div class="favourites_header">
+            <h1>My <span>Favourites</span></h1>
+            <p>Your saved favorite food items</p>
+        </div>
+
+        <div class="favourites_items" id="favouritesItems">
+            <!-- Items will be loaded here via JavaScript -->
+            <div class="empty_state" id="emptyState">
+                <i class="fa-solid fa-heart"></i>
+                <h2>No Favorites Yet</h2>
+                <p>Add items to your favorites from the menu to see them here</p>
+                <a href="index.html#Menu" class="empty_btn">Browse Menu</a>
+            </div>
+        </div>
+
+        <div class="all_items_section">
+            <h2>All Menu Items</h2>
+            <div class="all_items_grid" id="allItemsGrid">
+                <!-- Items will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-----------------------------FOOTER----------------------------->
+
+    <footer>
+        <div class="footer_main">
+
+            <div class="footer_tag">
+                <h2>Location</h2>
+                <p>Mumbai</p>
+                <p>Pune</p>
+                <p>Palghar</p>
+                <p>Thane</p>
+                <p>Nagpur</p>
+            </div>
+
+            <div class="footer_link">
+                <h2>Quick Link</h2>
+                <div class="quick_link">
+                    <a href="index.html#Home">
+                        <p>Home</p>
+                    </a>
+                    <a href="index.html#About">
+                        <p>About</p>
+                    </a>
+                    <a href="index.html#Menu">
+                        <p>Menu</p>
+                    </a>
+                    <a href="index.html#Team">
+                        <p>Team</p>
+                    </a>
+                    <a href="index.html#Order">
+                        <p>Order</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Contact</h2>
+                <p>+91 83290 26125</p>
+                <p>jadhavyash1307@gmail.com</p>
+                <p>foodshop123@gmail.com</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Our Services</h2>
+                <p>Fast Delivery</p>
+                <p>Easy Payments</p>
+                <p>24 × 7 Service</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Follows</h2>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        const menuItems = [
+            {
+                id: 1,
+                name: 'Burger',
+                price: 80,
+                originalPrice: 85,
+                image: 'burger.png',
+                description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates',
+                rating: 4.5
+            },
+            {
+                id: 2,
+                name: 'Pasta',
+                price: 70,
+                originalPrice: 80,
+                image: 'pasta.png',
+                description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates',
+                rating: 4
+            },
+            {
+                id: 3,
+                name: 'Pizza',
+                price: 100,
+                originalPrice: 120,
+                image: 'pizza.png',
+                description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates',
+                rating: 3.5
+            },
+            {
+                id: 4,
+                name: 'Sandwich',
+                price: 40,
+                originalPrice: 50,
+                image: 'sandwich.png',
+                description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates',
+                rating: 4
+            },
+            {
+                id: 5,
+                name: 'Biryani',
+                price: 200,
+                originalPrice: 220,
+                image: 'biryani.png',
+                description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates',
+                rating: 4.5
+            },
+            {
+                id: 6,
+                name: 'Chocolate drink',
+                price: 50,
+                originalPrice: 55,
+                image: 'chocolate drink.png',
+                description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates',
+                rating: 3
+            },
+            {
+                id: 7,
+                name: 'Juice',
+                price: 25,
+                originalPrice: 30,
+                image: 'juice.png',
+                description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates',
+                rating: 3.5
+            },
+            {
+                id: 8,
+                name: 'Ice Cream',
+                price: 60,
+                originalPrice: 70,
+                image: 'ice cream.png',
+                description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates',
+                rating: 4
+            }
+        ];
+
+        // Get favorites from localStorage
+        function getFavorites() {
+            const favs = localStorage.getItem('favorites');
+            return favs ? JSON.parse(favs) : [];
+        }
+
+        // Save favorites to localStorage
+        function saveFavorites(favorites) {
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        // Get cart from localStorage
+        function getCart() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        // Save cart to localStorage
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Add item to cart
+        function addToCart(itemId) {
+            let cart = getCart();
+            const existingItem = cart.find(item => item.id === itemId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: itemId,
+                    quantity: 1
+                });
+            }
+
+            saveCart(cart);
+            showNotification('Added to cart!', 'success');
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#fac031' : '#ff6b6b'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                z-index: 10000;
+                animation: slideInNotif 0.3s ease-out;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutNotif 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        // Toggle favorite
+        function toggleFavorite(itemId) {
+            let favorites = getFavorites();
+            const index = favorites.indexOf(itemId);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                showNotification('Removed from favorites', 'remove');
+            } else {
+                favorites.push(itemId);
+                showNotification('Added to favorites!', 'success');
+            }
+            saveFavorites(favorites);
+
+            // Immediate visual update
+            renderFavorites();
+            renderAllItems();
+
+            // Scroll to favorites section if item was added
+            if (index === -1) {
+                setTimeout(() => {
+                    document.getElementById('favouritesItems').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        // Create rating HTML
+        function createRatingHTML(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fa-solid fa-star"></i>';
+            }
+            if (hasHalfStar) {
+                stars += '<i class="fa-solid fa-star-half-stroke"></i>';
+            }
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="fa-regular fa-star"></i>';
+            }
+            return stars;
+        }
+
+        // Render favorites
+        function renderFavorites() {
+            const favorites = getFavorites();
+            const favoritesItems = document.getElementById('favouritesItems');
+
+            if (favorites.length === 0) {
+                favoritesItems.innerHTML = '<div class="empty_state"><i class="fa-solid fa-heart"></i><h2>No Favorites Yet</h2><p>Add items to your favorites from the menu to see them here</p><a href="index.html#Menu" class="empty_btn">Browse Menu</a></div>';
+                return;
+            }
+
+            let favoritesHTML = '<h2 style="grid-column: 1/-1; margin-bottom: 20px; font-size: 28px; color: #000;">My Favorites (' + favorites.length + ')</h2>';
+
+            favorites.forEach(favId => {
+                const item = menuItems.find(i => i.id === favId);
+                if (item) {
+                    favoritesHTML += `
+                        <div class="fav_item">
+                            <div class="fav_image">
+                                <img src="${item.image}">
+                                <button class="fav_heart" onclick="toggleFavorite(${item.id})" type="button">
+                                    <i class="fa-solid fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="fav_info">
+                                <h3>${item.name}</h3>
+                                <p>${item.description}</p>
+                                <div class="fav_price">
+                                    <span class="price">₹${item.price}.00</span>
+                                    <span class="original_price"><strike>₹${item.originalPrice}.00</strike></span>
+                                </div>
+                                <div class="fav_rating">
+                                    ${createRatingHTML(item.rating)}
+                                </div>
+                                <a class="fav_btn" onclick="addToCart(${item.id})">Add to cart</a>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            favoritesItems.innerHTML = favoritesHTML;
+        }
+
+        // Render all items for browsing
+        function renderAllItems() {
+            const favorites = getFavorites();
+            const allItemsGrid = document.getElementById('allItemsGrid');
+            let itemsHTML = '';
+
+            menuItems.forEach(item => {
+                const isFavorite = favorites.includes(item.id);
+                itemsHTML += `
+                    <div class="all_item">
+                        <div class="all_item_image">
+                            <img src="${item.image}">
+                            <button class="all_item_heart ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${item.id})">
+                                <i class="fa-${isFavorite ? 'solid' : 'regular'} fa-heart"></i>
+                            </button>
+                        </div>
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <div class="all_item_price">
+                            <span class="price">₹${item.price}.00</span>
+                            <span class="original_price"><strike>₹${item.originalPrice}.00</strike></span>
+                        </div>
+                        <div class="all_item_rating">
+                            ${createRatingHTML(item.rating)}
+                        </div>
+                        <a class="all_item_btn" onclick="addToCart(${item.id})">Add to cart</a>
+                    </div>
+                `;
+            });
+
+            allItemsGrid.innerHTML = itemsHTML;
+        }
+
+        // Add animation styles to document
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInNotif {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            @keyframes slideOutNotif {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            renderFavorites();
+            renderAllItems();
+        });
+    </script>
+
+</body>
+
+</html>

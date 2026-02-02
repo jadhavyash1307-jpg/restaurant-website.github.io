@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Food Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-----------------------------HEADER----------------------------->
+
+    <nav>
+        <div class="logo">
+            <img src="logo.png">
+        </div>
+        <ul>
+            <li><a href="index.html#Home">Home</a></li>
+            <li><a href="index.html#About">About</a></li>
+            <li><a href="index.html#Menu">Menu</a></li>
+            <li><a href="index.html#Team">Team</a></li>
+            <li><a href="index.html#Order">Order</a></li>
+        </ul>
+        <div class="icon">
+            <a href="search.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="favourites.html"><i class="fa-solid fa-heart"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </nav>
+
+    <!-----------------------------SEARCH SECTION----------------------------->
+
+    <div class="search_container">
+        <div class="search_header">
+            <h1>Search Our <span>Menu</span></h1>
+            <p>Find your favorite food items</p>
+        </div>
+
+        <div class="search_box_wrapper">
+            <div class="search_box">
+                <input type="text" id="searchInput" placeholder="Search for food items...">
+                <button onclick="searchFood()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+
+        <div class="search_results" id="searchResults">
+            <div class="result_item">
+                <img src="burger.png">
+                <div class="result_info">
+                    <h3>Burger</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates</p>
+                    <div class="result_price">
+                        <span class="price">₹80.00</span>
+                        <span class="original_price"><strike>₹85.00</strike></span>
+                    </div>
+                    <div class="result_rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a class="result_btn" onclick="addToCart(1)">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="result_item">
+                <img src="pasta.png">
+                <div class="result_info">
+                    <h3>Pasta</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates</p>
+                    <div class="result_price">
+                        <span class="price">₹70.00</span>
+                        <span class="original_price"><strike>₹80.00</strike></span>
+                    </div>
+                    <div class="result_rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <a class="result_btn" onclick="addToCart(2)">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="result_item">
+                <img src="pizza.png">
+                <div class="result_info">
+                    <h3>Pizza</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates</p>
+                    <div class="result_price">
+                        <span class="price">₹100.00</span>
+                        <span class="original_price"><strike>₹120.00</strike></span>
+                    </div>
+                    <div class="result_rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <a class="result_btn" onclick="addToCart(3)">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="result_item">
+                <img src="sandwich.png">
+                <div class="result_info">
+                    <h3>Sandwich</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates</p>
+                    <div class="result_price">
+                        <span class="price">₹40.00</span>
+                        <span class="original_price"><strike>₹50.00</strike></span>
+                    </div>
+                    <div class="result_rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <a class="result_btn" onclick="addToCart(4)">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="result_item">
+                <img src="biryani.png">
+                <div class="result_info">
+                    <h3>Biryani</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates</p>
+                    <div class="result_price">
+                        <span class="price">₹200.00</span>
+                        <span class="original_price"><strike>₹220.00</strike></span>
+                    </div>
+                    <div class="result_rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a class="result_btn" onclick="addToCart(5)">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="result_item">
+                <img src="chocolate drink.png">
+                <div class="result_info">
+                    <h3>Chocolate drink</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates</p>
+                    <div class="result_price">
+                        <span class="price">₹50.00</span>
+                        <span class="original_price"><strike>₹55.00</strike></span>
+                    </div>
+                    <div class="result_rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <a class="result_btn" onclick="addToCart(6)">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="result_item">
+                <img src="juice.png">
+                <div class="result_info">
+                    <h3>Juice</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates</p>
+                    <div class="result_price">
+                        <span class="price">₹25.00</span>
+                        <span class="original_price"><strike>₹30.00</strike></span>
+                    </div>
+                    <div class="result_rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <a class="result_btn" onclick="addToCart(7)">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="result_item">
+                <img src="ice cream.png">
+                <div class="result_info">
+                    <h3>Ice Cream</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum assumenda voluptates</p>
+                    <div class="result_price">
+                        <span class="price">₹60.00</span>
+                        <span class="original_price"><strike>₹70.00</strike></span>
+                    </div>
+                    <div class="result_rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <a class="result_btn" onclick="addToCart(8)">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-----------------------------FOOTER----------------------------->
+
+    <footer>
+        <div class="footer_main">
+
+            <div class="footer_tag">
+                <h2>Location</h2>
+                <p>Mumbai</p>
+                <p>Pune</p>
+                <p>Palghar</p>
+                <p>Thane</p>
+                <p>Nagpur</p>
+            </div>
+
+            <div class="footer_link">
+                <h2>Quick Link</h2>
+                <div class="quick_link">
+                    <a href="index.html#Home">
+                        <p>Home</p>
+                    </a>
+                    <a href="index.html#About">
+                        <p>About</p>
+                    </a>
+                    <a href="index.html#Menu">
+                        <p>Menu</p>
+                    </a>
+                    <a href="index.html#Team">
+                        <p>Team</p>
+                    </a>
+                    <a href="index.html#Order">
+                        <p>Order</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Contact</h2>
+                <p>+91 83290 26125</p>
+                <p>jadhavyash1307@gmail.com</p>
+                <p>foodshop123@gmail.com</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Our Services</h2>
+                <p>Fast Delivery</p>
+                <p>Easy Payments</p>
+                <p>24 × 7 Service</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Follows</h2>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Get cart from localStorage
+        function getCart() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        // Save cart to localStorage
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Add item to cart
+        function addToCart(itemId) {
+            let cart = getCart();
+            const existingItem = cart.find(item => item.id === itemId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: itemId,
+                    quantity: 1
+                });
+            }
+
+            saveCart(cart);
+            showNotification('Added to cart!', 'success');
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#fac031' : '#ff6b6b'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                z-index: 10000;
+                animation: slideInNotif 0.3s ease-out;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutNotif 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        function searchFood() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.result_item');
+
+            items.forEach(item => {
+                const itemName = item.querySelector('h3').textContent.toLowerCase();
+                if (itemName.includes(input) || input === '') {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Add animation styles to document
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInNotif {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            @keyframes slideOutNotif {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchFood();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
